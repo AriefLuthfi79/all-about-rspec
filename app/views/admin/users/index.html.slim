@@ -2,6 +2,9 @@
 
 ul.users
   - @users.each do |user|
-    li.admined
+    li class = ('admined' if user.has_role? :admin)
       = user.email
-      = button_to "Make admin", admin_user_admins_path(user), method: :post
+      - if user.has_role? :admin
+        = button_to "Cancel admin", admin_user_admins_path(user), method: :delete
+      - else
+        = button_to "Make admin", admin_user_admins_path(user)

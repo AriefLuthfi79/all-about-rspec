@@ -6,7 +6,8 @@ class Admin::AdminsController < ApplicationController
   end
 
   def destroy
-
+    current_resource.remove_role :admin
+    redirect_to root_path
   end
 
   private
