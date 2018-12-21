@@ -5,11 +5,8 @@ RSpec.feature "Allow admin to roled user" do
     login_as FactoryBot.create(:admin)
     visit root_path
 
-    click_on "Create new user"
-    fill_in "Email", with: "arief@gmail.com"
-    click_button "Submit"
-
+    create_user_by_admin "arief@gmail.com"
     click_on "Make admin", match: :first
-    expect(page).to have_css '.users li.admined', text: "arief@gmail.com"
+    expect(page).to display_admined_user "arief@gmail.com"
   end
 end

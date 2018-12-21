@@ -5,11 +5,8 @@ RSpec.feature "Admin can creates user" do
     login_as FactoryBot.create(:admin)
     visit root_path
 
-    click_on "Create new user"
-    fill_in "Email", with: "arief@gmail.com"
-    click_on "Submit"
-
-    expect(page).to have_css '.users li', text: "arief@gmail.com"
+    create_user_by_admin "arief@gmail.com"
+    expect(page).to display_users "arief@gmail.com"
   end
 
   scenario "unsuccessfully" do

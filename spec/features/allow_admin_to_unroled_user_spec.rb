@@ -5,15 +5,12 @@ RSpec.feature "Allow admin to unroled user" do
     login_as FactoryBot.create(:admin)
     visit root_path
 
-    click_on "Create new user"
-    fill_in "Email", with: "arief@gmail.com"
-    click_button "Submit"
-
+    create_user_by_admin "arief@gmail.com"
     click_on "Make admin", match: :first
     click_on "Cancel admin", match: :first
 
-    expect(page).not_to have_css '.users li.admined', text: "arief@gmail.com"
-    expect(page).to have_css '.users li', text: "arief@gmail.com"
+    expect(page).not_to display_admined_user "arief@gmail.com"
+    expect(page).to display_users "arief@gmail.com"
   end
     
 end
