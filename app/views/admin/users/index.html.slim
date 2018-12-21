@@ -1,0 +1,7 @@
+= link_to "Create new user", new_admin_user_path
+
+ul.users
+  - @users.each do |user|
+    li.admined
+      = user.email
+      = button_to "Make admin", admin_user_admins_path(user), method: :post
