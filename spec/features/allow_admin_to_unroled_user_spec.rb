@@ -12,6 +12,8 @@ RSpec.feature "Allow admin to unroled user" do
     click_on "Make admin", match: :first
     click_on "Cancel admin", match: :first
 
+    expect(page).not_to have_css '.users li.admined', text: "arief@gmail.com"
     expect(page).to have_css '.users li', text: "arief@gmail.com"
   end
+    
 end
